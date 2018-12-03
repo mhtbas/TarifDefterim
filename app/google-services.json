@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "737974059526-m09bcjlpetqrba4i6aoa22apgrttaa6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.muhammedbas.tarifdefterim",
+            "certificate_hash": "245b60f4b6dff46eff0b1d40862fe0c9c8304d17"
+          }
+        },
+        {
           "client_id": "737974059526-n828avos02cv0vpuiro5bt1ss9s8sdcn.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737974059526-n828avos02cv0vpuiro5bt1ss9s8sdcn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
