@@ -7,46 +7,63 @@
     tools:context=".LoginRegister.LoginScreen">
 
     <LinearLayout
+        android:layout_above="@+id/registerbutton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         android:padding="15dp">
 
         <EditText
+
             android:id="@+id/usernametext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@null"
+            android:background="@android:color/transparent"
             android:drawableLeft="@drawable/login_person"
             android:drawablePadding="12dp"
-            android:hint="Ögrenci Numarası veya Plaka"
+            android:padding="8dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="Kullanıcı Adı veya Email"
             android:maxLines="1"
-            android:text="mhtbas@hotmail.com" />
+            android:text="" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/black" />
 
         <EditText
             android:id="@+id/passwordtext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
-            android:background="@null"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:ems="10"
             android:drawableLeft="@drawable/login_lock"
             android:drawablePadding="12dp"
-            android:hint="Sifre"
+            android:hint="Şifre"
             android:inputType="textPassword"
-            android:text="123123123" />
+            android:text="" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/black" />
 
     </LinearLayout>
 
     <TextView
         android:layout_above="@+id/bottom"
-        android:text="Hemen KayıtOl"
+        android:text="Hemen üye ol "
         android:gravity="center"
-        android:textSize="18dp"
+        android:textSize="17sp"
         android:layout_marginBottom="10dp"
         android:textAllCaps="false"
         android:id="@+id/registerbutton"
@@ -72,6 +89,7 @@
             android:id="@+id/loginbutton"
             android:layout_weight="1.0"
             android:textColor="#fff"
+            android:textSize="18sp"
             android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

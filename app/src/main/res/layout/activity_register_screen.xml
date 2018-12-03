@@ -7,12 +7,10 @@
     tools:context=".LoginRegister.RegisterScreen">
 
     <LinearLayout
+        android:layout_above="@+id/loginbutton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -21,12 +19,19 @@
             android:id="@+id/usernametext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@null"
+            android:padding="8dp"
+            android:background="@android:color/transparent"
             android:drawableLeft="@drawable/login_person"
             android:drawablePadding="12dp"
             android:hint="Adınız "
-            android:inputType="text|number"
+            android:inputType="text"
             android:maxLines="1" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/black" />
+
 
 
         <EditText
@@ -34,12 +39,18 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
-            android:background="@null"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
             android:drawableLeft="@drawable/login_person"
             android:drawablePadding="12dp"
             android:hint="E-mail"
             android:maxLines="1" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/black" />
 
 
         <EditText
@@ -47,11 +58,18 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
-            android:background="@null"
+            android:background="@android:color/transparent"
             android:drawableLeft="@drawable/login_lock"
             android:drawablePadding="12dp"
-            android:hint="Sifre"
+            android:padding="8dp"
+            android:hint="Şifre"
             android:inputType="textPassword" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/black" />
 
     </LinearLayout>
 
@@ -64,7 +82,7 @@
         android:layout_weight="1.0"
         android:textColor="#000"
         android:gravity="center"
-        android:textSize="18dp"
+        android:textSize="17sp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -85,6 +103,7 @@
             android:textAllCaps="false"
             android:id="@+id/registerbutton"
             android:layout_weight="1.0"
+            android:textSize="18sp"
             android:textColor="#fff"
             android:background="@color/colorPrimary"
             android:layout_width="match_parent"
