@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="silverwhite">#ECEFF1</color>
+    <color name="matBlack">#141414</color>
+
+    <color name="colortransparentWhite">#cccccc</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="faceblue">#3b5998</color>
+
+
+    <color name="tabTextColor">#000</color>
+    <color name="tabIndıcator">#d70000</color>
+
+    <color name="navTextColor">#fff</color>
+    <color name="navBackGround">#424242</color>
+
+    <color name="yellow">#F6A623</color>
+    <color name="violet">#673AB7</color>
+    <color name="violet_trans_80">#BF673AB7</color>
+    <color name="orange">#F07B3F</color>
+    <color name="grey">#949494</color>
+    <color name="red">#FE3824</color>
+    <color name="red_logout">#E95354</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_transparent_80">#BFFFFFFF</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="chrome_grey">#F2F2F2</color>
+    <color name="txt_profile">#2C4058</color>
+    <!--shimmer-->
+    <color name="demo_light_transparent">#16000000</color>
+    <color name="demo_dark_transparent">#24000000</color>
+    <color name="black">#000000</color>
+    <color name="black_25_transparent">#40000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="grey_trans">#c7c7c7</color>
+    <color name="green">#70c050</color>
+
+
+    <color name="address">#2F7092</color>
+    <color name="followers">#0D5D98</color>
+    <color name="headings">#3797CF</color>
+    <color name="solidCircle">#AAFFFFFF</color>
+    <color name="circleBorder">#50FFFFFF</color>
+    <color name="gradEnd">#67EFC8</color>
+    <color name="gradStart">#63C9FF</color>
+    <color name="followersBg">#65DCE5</color>
+    <color name="followingBg">#49BEFF</color>
+</resources>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "737974059526",
+    "firebase_url": "https://tarifdefterim-dcd18.firebaseio.com",
+    "project_id": "tarifdefterim-dcd18",
+    "storage_bucket": "tarifdefterim-dcd18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737974059526:android:fe1b2bc2c73c284c",
+        "android_client_info": {
+          "package_name": "com.project.muhammedbas.tarifdefterim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737974059526-n828avos02cv0vpuiro5bt1ss9s8sdcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGe7yB2Ws36z4SLC3-x5dFDK81ARUZ7WA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
