@@ -93,8 +93,8 @@ public class LoginScreen extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
-                            login.setEnabled(false);
-                            register.setEnabled(false);
+                            login.setEnabled(true);
+                            register.setEnabled(true);
                             progressDialog.dismiss();
                         }
                     });

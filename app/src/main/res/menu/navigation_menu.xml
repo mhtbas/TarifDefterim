@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_fav"
+        android:title="Favorilerim"></item>
+
+    <item android:id="@+id/nav_cal"
+        android:title="Ölçü Birimleri"></item>
+
+    <item android:id="@+id/nav_seb"
+    android:title="Mevsim Sebzeleri"></item>
+
+    <item android:id="@+id/nav_mev"
+        android:title="Mevsim Meyveleri"></item>
+
+    <item android:id="@+id/nav_fish"
+        android:title="Mevsim Balıkları"></item>
+
+</menu>

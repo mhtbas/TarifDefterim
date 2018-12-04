@@ -86,7 +86,7 @@ public class RegisterScreen extends AppCompatActivity {
                     final String passstring=pass.getText().toString();
                     final String emailstring=email.getText().toString();
 
-                    progressDialog.setMessage("Giriş Yapılıyor..");
+                    progressDialog.setMessage("Bilgiler Kaydediliyor..");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
