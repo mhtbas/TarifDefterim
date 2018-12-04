@@ -2,6 +2,7 @@ package com.project.muhammedbas.tarifdefterim;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.MenuCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,6 +25,7 @@ public class HomeScreen extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+    private NavigationView navigationView;
 
     private TextView usernameText;
     private DatabaseReference mUserDatabase;
@@ -50,6 +52,64 @@ public class HomeScreen extends AppCompatActivity {
 
             }
         });
+
+
+        ////////////////////////// navigation click event///////////////////
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_fav:
+                        Intent intent_fav = new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_fav);
+                        return true;
+
+                    case R.id.nav_cal:
+                        Intent intent_cal = new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_cal);
+                        return true;
+
+                    case R.id.nav_seb:
+                        Intent intent_seb = new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_seb);
+                        return true;
+
+                    case R.id.nav_mev:
+                        Intent intent_mev = new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_mev);
+                        return true;
+
+                    case R.id.nav_fish:
+                        Intent intent_fish= new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_fish);
+                        return true;
+
+                    case R.id.nav_setting:
+                        Intent intent_setting = new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_setting);
+                        return true;
+
+                    case R.id.nav_contact:
+                        Intent intent_contact = new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_contact);
+                        return true;
+
+                    case R.id.nav_help:
+                        Intent intent_help= new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_help);
+                        return true;
+
+                    case R.id.nav_logout:
+                        Intent intent_logout = new Intent(getApplicationContext(),SettingPage.class);
+                        startActivity(intent_logout);
+                        return true;
+
+                    default:
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -68,21 +128,24 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        //////////////////////////////Search Click/////////////////////////////////////////////////
          switch (item.getItemId()){
-             case R.id.setting:
-                 Intent intent = new Intent(getApplicationContext(),SettingPage.class);
+             case R.id.search:
+                 Intent intent = new Intent(getApplicationContext(),SearchScreen.class);
                  startActivity(intent);
                  return true;
 
-
              default:
+
 
          }
 
+         /////////////////////////////////////Toggle Click/////////////////////////////////////////
         if(mToggle.onOptionsItemSelected(item)){
 
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -90,6 +153,7 @@ public class HomeScreen extends AppCompatActivity {
 
         mDrawerLayout=findViewById(R.id.drawerlayout);
         mToggle= new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        navigationView=findViewById(R.id.navigationView);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();

@@ -20,7 +20,8 @@
         <activity
             android:name=".HomeScreen"
             android:theme="@style/AppTheme" />
-        <activity android:name=".SettingPage"></activity>
+        <activity android:name=".SettingPage" />
+        <activity android:name=".SearchScreen"></activity>
     </application>
 
 </manifest>

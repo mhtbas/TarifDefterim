@@ -28,7 +28,7 @@
             android:icon="@drawable/settingblack"
             android:title="Ayarlar"></item>
 
-        <item android:id="@+id/nav_contanct"
+        <item android:id="@+id/nav_contact"
             android:icon="@drawable/conblack"
             android:title="Bize Ulaşın"></item>
 

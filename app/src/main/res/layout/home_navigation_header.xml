@@ -6,9 +6,9 @@
     android:layout_height="140dp">
 
     <ImageView
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/personwhite" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/user" />
 </RelativeLayout>
