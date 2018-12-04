@@ -104,7 +104,7 @@ public class SettingPage extends AppCompatActivity {
 
         settingArrayList.add(new ListItemSetting("Hesap Ayarları"));
         settingArrayList.add(new ListItemSetting("Şifre Degiştir"));
-        settingArrayList.add(new ListItemSetting("Dil Seçimi"));;
+        settingArrayList.add(new ListItemSetting("Dil Seçimi"));
         settingArrayList.add(new ListItemSetting("Çıkış"));
 
         ListAdapter listAdapter = new ListAdapter(settingArrayList);

@@ -2,6 +2,7 @@ package com.project.muhammedbas.tarifdefterim;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.view.MenuCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -56,6 +57,11 @@ public class HomeScreen extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_three, menu);
+
+
+        /////// divider with menu group //////////////////////////////////////////////////
+        MenuCompat.setGroupDividerEnabled(menu, true);
+
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -19,16 +19,37 @@
              android:layout_height="match_parent">
 
              <TextView
+                 android:id="@+id/username"
                  android:textColor="@color/grey"
                  android:textSize="24dp"
                  android:layout_centerHorizontal="true"
                  android:paddingLeft="15dp"
                  android:paddingRight="15dp"
+                 android:layout_marginBottom="10dp"
                  android:layout_marginTop="10dp"
-                 android:id="@+id/username"
                  android:fontFamily="@font/nunito_bold"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content" />
+
+             <ListView
+                 android:layout_below="@+id/username"
+                 android:id="@+id/listTarifList"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+             </ListView>
+
+             <android.support.design.widget.FloatingActionButton
+                 android:id="@+id/addTarifButton"
+                 android:background="@color/colorPrimary"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentEnd="true"
+                 android:layout_alignParentBottom="true"
+                 android:layout_marginEnd="15dp"
+                 android:layout_marginBottom="15dp"
+                 android:clickable="true"
+                 app:srcCompat="@drawable/add_tarif" />
 
 
          </RelativeLayout>
@@ -40,9 +61,10 @@
         android:layout_gravity="start"
         app:menu="@menu/navigation_menu"
         app:headerLayout="@layout/home_navigation_header"
+
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-
     </android.support.design.widget.NavigationView>
+
 </android.support.v4.widget.DrawerLayout>

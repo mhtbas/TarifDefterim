@@ -29,7 +29,7 @@
             android:inputType="textEmailAddress"
             android:hint="Kullanıcı Adı veya Email"
             android:maxLines="1"
-            android:text="mht.bas@hotmail.com   " />
+            android:text="mht.bas@hotmail.com" />
 
         <View
             android:layout_width="match_parent"
