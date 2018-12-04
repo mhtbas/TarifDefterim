@@ -6,6 +6,7 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/drawerlayout"
     tools:context=".HomeScreen">
 
     <LinearLayout
@@ -25,6 +26,7 @@
     <android.support.design.widget.NavigationView
         android:layout_gravity="start"
         app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/home_navigation_header"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 

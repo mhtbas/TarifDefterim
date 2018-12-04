@@ -29,7 +29,7 @@
             android:inputType="textEmailAddress"
             android:hint="Kullanıcı Adı veya Email"
             android:maxLines="1"
-            android:text="" />
+            android:text="mht.bas@hotmail.com   " />
 
         <View
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
             android:drawablePadding="12dp"
             android:hint="Şifre"
             android:inputType="textPassword"
-            android:text="" />
+            android:text="123123123" />
 
         <View
             android:layout_width="match_parent"
