@@ -6,17 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".AddRecipes">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/content1"
         android:layout_width="match_parent"
         android:layout_height="150dp">
 
         <ImageView
-            android:background="@color/grey"
             android:id="@+id/imageview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/grey" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_centerVertical="true"
@@ -30,8 +39,150 @@
 
     </RelativeLayout>
 
-    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/content1"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="0dp"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tarif Adı"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/tarifadı"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear1"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kaç Kişilik"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/kackişilik"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"></Spinner>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            android:layout_below="@id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hazırlanma"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/hazırlanma"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"></Spinner>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear4"
+            android:layout_below="@id/linear3"
+            android:paddingRight="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Malzemeler"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/malzemelerEditText"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
 
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linear5"
+            android:layout_below="@id/linear4"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hazırlanışı"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/hazırlanısEditText"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/linear6"
+            android:layout_below="@id/linear5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kategori"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Spinner>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
