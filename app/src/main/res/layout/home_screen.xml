@@ -31,8 +31,31 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content" />
 
+             <View
+                 android:id="@+id/view"
+                 android:background="@color/grey"
+                 android:layout_below="@id/username"
+                 android:layout_width="match_parent"
+                 android:layout_height="1dp"></View>
+
+             <TextView
+                 android:textColor="@color/grey"
+                 android:text="Henüz bir tarifiniz bulunmuyor .
+Hemen eklemek için tıklayın !"
+                 android:textSize="24sp"
+                 android:id="@+id/addtext"
+                 android:visibility="invisible"
+                 android:fontFamily="@font/nunito_bold"
+                 android:paddingLeft="40dp"
+                 android:paddingRight="40dp"
+                 android:paddingTop="20dp"
+                 android:gravity="center"
+                 android:layout_below="@+id/view"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent" />
+
              <ListView
-                 android:layout_below="@+id/username"
+                 android:layout_below="@+id/view"
                  android:id="@+id/listTarifList"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content">

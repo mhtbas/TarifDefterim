@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -29,14 +30,42 @@ public class HomeScreen extends AppCompatActivity {
 
     private TextView usernameText;
     private DatabaseReference mUserDatabase;
+    private DatabaseReference mRecipes;
     private String currentUser;
 
+    private TextView addText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
 
         init();
+
+        /////////////////////////// check user have recipes =  ? /////////////////////////////////////////
+
+        mRecipes.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.hasChild(currentUser)){
+
+                    addText.setVisibility(View.INVISIBLE);
+                    addText.setEnabled(false);
+
+                }else{
+
+                    addText.setVisibility(View.VISIBLE);
+                    addText.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        ////////////////////////////////////// user name upload ///////////////////////////////////////////
 
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -53,6 +82,17 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+
+        ////////////////////////////////////// addText click//////////////////////////////////////////////////
+
+        addText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(),AddRecipes.class);
+                startActivity(intent);
+            }
+        });
 
         ////////////////////////// navigation click event///////////////////
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -162,9 +202,10 @@ public class HomeScreen extends AppCompatActivity {
 
 
         usernameText=findViewById(R.id.username);
+        addText=findViewById(R.id.addtext);
 
         currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
         mUserDatabase=FirebaseDatabase.getInstance().getReference().child("users").child(currentUser);
-
+        mRecipes=FirebaseDatabase.getInstance().getReference().child("recipes");
     }
 }

@@ -21,7 +21,9 @@
             android:name=".HomeScreen"
             android:theme="@style/AppTheme" />
         <activity android:name=".SettingPage" />
-        <activity android:name=".SearchScreen"></activity>
+        <activity android:name=".SearchScreen" />
+        <activity android:name=".AddRecipes"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
