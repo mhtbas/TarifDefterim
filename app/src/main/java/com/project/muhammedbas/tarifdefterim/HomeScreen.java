@@ -3,6 +3,7 @@ package com.project.muhammedbas.tarifdefterim;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.MenuCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -32,6 +33,8 @@ public class HomeScreen extends AppCompatActivity {
     private DatabaseReference mRecipes;
     private String currentUser;
 
+    private FloatingActionButton addRecipes;
+
     private TextView addText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,19 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.home_screen);
 
         init();
+
+
+        //////////////////////// button click add //////////////////////////////////////
+
+        addRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(),AddRecipes.class);
+                startActivity(intent);
+
+            }
+        });
 
         /////////////////////////// check user have recipes =  ? /////////////////////////////////////////
 
@@ -202,6 +218,7 @@ public class HomeScreen extends AppCompatActivity {
 
         usernameText=findViewById(R.id.username);
         addText=findViewById(R.id.addtext);
+        addRecipes=findViewById(R.id.addTarifButton);
 
         currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
         mUserDatabase=FirebaseDatabase.getInstance().getReference().child("users").child(currentUser);
