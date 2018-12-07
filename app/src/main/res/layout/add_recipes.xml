@@ -27,6 +27,17 @@
             android:layout_alignParentTop="true"
             android:background="@color/grey" />
 
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito_bold"
+            android:textColor="@color/white"
+            android:id="@+id/fotografekletextview"
+            android:textSize="20dp"
+            android:text="Fotoğraf Ekle "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -62,9 +73,13 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:background="@drawable/edittextcorner"
+                android:maxLines="1"
+                android:inputType="text"
+                android:paddingLeft="10dp"
                 android:id="@+id/tarifadı"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></EditText>
+                android:layout_height="40dp"></EditText>
 
         </LinearLayout>
 
@@ -74,19 +89,71 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linear1"
             android:layout_marginBottom="10dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kaç Kişilik"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
 
-            <Spinner
-                android:id="@+id/kackişilik"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"></Spinner>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kaç Kişilik"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <Spinner
+
+                    android:textAlignment="center"
+                    android:id="@+id/kackişilik"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"></Spinner>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hazırlanma"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <Spinner
+                    android:id="@+id/hazırlanma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"></Spinner>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pişirme Süresi"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <Spinner
+                    android:id="@+id/pişirme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"></Spinner>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
@@ -98,17 +165,8 @@
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hazırlanma"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
 
-            <Spinner
-                android:id="@+id/hazırlanma"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"></Spinner>
+
 
         </LinearLayout>
 
@@ -130,6 +188,12 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:gravity="top|left"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="18dp"
+                android:background="@drawable/edittextcorner"
+                android:hint="Malzemeleri giriniz.."
                 android:id="@+id/malzemelerEditText"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
@@ -153,6 +217,12 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:gravity="top|left"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="18dp"
+                android:background="@drawable/edittextcorner"
+                android:hint="Nasıl hazırlanıyor.."
                 android:id="@+id/hazırlanısEditText"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
@@ -176,6 +246,7 @@
                 android:textSize="20dp" />
 
             <Spinner
+                android:id="@+id/kategori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"></Spinner>
 
