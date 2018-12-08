@@ -39,28 +39,42 @@
                  android:layout_height="1dp"></View>
 
              <TextView
-                 android:textColor="@color/grey"
+                 android:id="@+id/addtext"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_below="@+id/view"
+                 android:layout_alignParentStart="true"
+                 android:layout_marginStart="0dp"
+                 android:layout_marginTop="-1dp"
+                 android:fontFamily="@font/nunito_bold"
+                 android:gravity="center"
+                 android:paddingLeft="40dp"
+                 android:paddingTop="20dp"
+                 android:paddingRight="40dp"
                  android:text="Henüz bir tarifiniz bulunmuyor .
 Hemen eklemek için tıklayın !"
+                 android:textColor="@color/grey"
                  android:textSize="24sp"
-                 android:id="@+id/addtext"
-                 android:visibility="invisible"
-                 android:fontFamily="@font/nunito_bold"
-                 android:paddingLeft="40dp"
-                 android:paddingRight="40dp"
-                 android:paddingTop="20dp"
-                 android:gravity="center"
+                 android:visibility="invisible" />
+
+             <RelativeLayout
+                 android:background="@color/silverwhite"
                  android:layout_below="@+id/view"
                  android:layout_width="match_parent"
-                 android:layout_height="match_parent" />
+                 android:layout_height="match_parent">
+                 <android.support.v7.widget.RecyclerView
+                     android:layout_marginTop="20dp"
+                     android:layout_marginLeft="15dp"
+                     android:layout_marginRight="15dp"
+                     android:layout_marginBottom="15dp"
+                     android:id="@+id/listTarifList"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent">
 
-             <ListView
-                 android:layout_below="@+id/view"
-                 android:id="@+id/listTarifList"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content">
+                 </android.support.v7.widget.RecyclerView>
 
-             </ListView>
+             </RelativeLayout>
+
 
              <android.support.design.widget.FloatingActionButton
                  android:id="@+id/addTarifButton"

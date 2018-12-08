@@ -158,15 +158,14 @@ public class AddRecipes extends AppCompatActivity {
                 add.put("preparationTime",hazırlanmaspinnerString);
                 add.put("cookingTime",pişirmespinnerString);
                 add.put("category",kategorispinnerString);
-                add.put("personcount",kackişilikspinnerString);
                 add.put("recipeName",tarifAdıString);
                 add.put("materials",malzemelerString);
                 add.put("preparation",hazırlanışString);
 
-                DatabaseReference pushAdd = mRecipes.child(currentUser).push();
+                DatabaseReference pushAdd = mRecipes.child(currentUser).child(kategorispinnerString).push();
                 final String push_id = pushAdd.getKey();
 
-                mRecipes.child(currentUser).child(push_id).setValue(add).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mRecipes.child(currentUser).child(kategorispinnerString).child(push_id).setValue(add).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 

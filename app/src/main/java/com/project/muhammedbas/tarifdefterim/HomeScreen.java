@@ -9,18 +9,29 @@ import android.support.v4.view.MenuCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.project.muhammedbas.tarifdefterim.Utils.HomeList;
+
+import java.util.ArrayList;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -32,6 +43,8 @@ public class HomeScreen extends AppCompatActivity {
     private DatabaseReference mUserDatabase;
     private DatabaseReference mRecipes;
     private String currentUser;
+    private RecyclerView listTarifList;
+
 
     private FloatingActionButton addRecipes;
 
@@ -42,7 +55,6 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.home_screen);
 
         init();
-
 
         //////////////////////// button click add //////////////////////////////////////
 
@@ -62,7 +74,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if(dataSnapshot.hasChild(currentUser)){
+                if(dataSnapshot.hasChild("")){
 
                     addText.setVisibility(View.INVISIBLE);
                     addText.setEnabled(false);
@@ -72,13 +84,16 @@ public class HomeScreen extends AppCompatActivity {
                     addText.setVisibility(View.VISIBLE);
                     addText.setEnabled(true);
                 }
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
 
         ////////////////////////////////////// user name upload ///////////////////////////////////////////
 
@@ -167,6 +182,46 @@ public class HomeScreen extends AppCompatActivity {
         });
     }
 
+    public class ListAdapter extends BaseAdapter {
+
+        public  ArrayList<HomeList> arrayList;
+
+        public ListAdapter(ArrayList<HomeList> listItems){
+            this.arrayList=listItems;
+        }
+
+        @Override
+        public int getCount() {
+            return arrayList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return arrayList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return arrayList.get(position).hashCode();
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            LayoutInflater layoutInflater = getLayoutInflater();
+            View view=layoutInflater.inflate(R.layout.home_listview_single,null);
+
+            TextView recipename= view.findViewById(R.id.recipename);
+
+            final HomeList listItem =arrayList.get(position);
+
+            recipename.setText(listItem.getRecipename());
+
+            return view;
+        }
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -220,8 +275,76 @@ public class HomeScreen extends AppCompatActivity {
         addText=findViewById(R.id.addtext);
         addRecipes=findViewById(R.id.addTarifButton);
 
+        listTarifList=findViewById(R.id.listTarifList);
+        listTarifList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        listTarifList.setHasFixedSize(true);
+
         currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
         mUserDatabase=FirebaseDatabase.getInstance().getReference().child("users").child(currentUser);
-        mRecipes=FirebaseDatabase.getInstance().getReference().child("recipes");
+        mRecipes=FirebaseDatabase.getInstance().getReference().child("recipes").child(currentUser);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+        FirebaseRecyclerOptions<HomeList> options = new FirebaseRecyclerOptions.Builder<HomeList>()
+                .setQuery(mRecipes,HomeList.class).build();
+
+
+        FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<HomeList, RecipeViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull RecipeViewHolder holder, int position, @NonNull HomeList model) {
+
+                String recipeID=getRef(position).getKey();
+                Log.d("recipeıd",recipeID);
+
+
+                holder.setRecipename(recipeID);
+            }
+
+            @Override
+            public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+
+                View searchView =LayoutInflater.from(getApplicationContext())
+                        .inflate(R.layout.home_listview_single,parent,false);
+
+                return new RecipeViewHolder(searchView);
+            }
+
+        };
+
+        listTarifList.setAdapter(adapter);
+        adapter.startListening();
+
+    }
+
+    private class RecipeViewHolder extends  RecyclerView.ViewHolder{
+
+        private View mView;
+        private TextView recipename;
+
+
+        public RecipeViewHolder(View itemView) {
+            super(itemView);
+            mView=itemView;
+
+            recipename = mView.findViewById(R.id.recipename);
+
+        }
+
+        public void setRecipename(String recipenamestring){
+            recipename.setText(recipenamestring);
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+
     }
 }
