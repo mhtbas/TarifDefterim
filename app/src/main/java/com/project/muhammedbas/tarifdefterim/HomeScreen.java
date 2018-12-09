@@ -1,5 +1,6 @@
 package com.project.muhammedbas.tarifdefterim;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.MenuCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +20,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -29,9 +30,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.project.muhammedbas.tarifdefterim.LoginRegister.LoginScreen;
+import com.project.muhammedbas.tarifdefterim.SettingPage.ContactScreen;
+import com.project.muhammedbas.tarifdefterim.SettingPage.FavoriteScreen;
+import com.project.muhammedbas.tarifdefterim.SettingPage.HelpScreen;
+import com.project.muhammedbas.tarifdefterim.SettingPage.SettingPage;
 import com.project.muhammedbas.tarifdefterim.Utils.HomeList;
-
-import java.util.ArrayList;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -131,7 +135,7 @@ public class HomeScreen extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_fav:
-                        Intent intent_fav = new Intent(getApplicationContext(),SettingPage.class);
+                        Intent intent_fav = new Intent(getApplicationContext(),FavoriteScreen.class);
                         startActivity(intent_fav);
                         return true;
 
@@ -161,18 +165,17 @@ public class HomeScreen extends AppCompatActivity {
                         return true;
 
                     case R.id.nav_contact:
-                        Intent intent_contact = new Intent(getApplicationContext(),SettingPage.class);
+                        Intent intent_contact = new Intent(getApplicationContext(),ContactScreen.class);
                         startActivity(intent_contact);
                         return true;
 
                     case R.id.nav_help:
-                        Intent intent_help= new Intent(getApplicationContext(),SettingPage.class);
+                        Intent intent_help= new Intent(getApplicationContext(),HelpScreen.class);
                         startActivity(intent_help);
                         return true;
 
                     case R.id.nav_logout:
-                        Intent intent_logout = new Intent(getApplicationContext(),SettingPage.class);
-                        startActivity(intent_logout);
+                        logout();
                         return true;
 
                     default:
@@ -181,46 +184,6 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
     }
-
-    public class ListAdapter extends BaseAdapter {
-
-        public  ArrayList<HomeList> arrayList;
-
-        public ListAdapter(ArrayList<HomeList> listItems){
-            this.arrayList=listItems;
-        }
-
-        @Override
-        public int getCount() {
-            return arrayList.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return arrayList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return arrayList.get(position).hashCode();
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater layoutInflater = getLayoutInflater();
-            View view=layoutInflater.inflate(R.layout.home_listview_single,null);
-
-            TextView recipename= view.findViewById(R.id.recipename);
-
-            final HomeList listItem =arrayList.get(position);
-
-            recipename.setText(listItem.getRecipename());
-
-            return view;
-        }
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -350,10 +313,57 @@ public class HomeScreen extends AppCompatActivity {
 
     }
 
+    public void logout(){
+        // Alert builder
+
+        AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(HomeScreen.this);
+
+        CharSequence options[] = new CharSequence[]{"Çıkış","İptal"};
+
+        builder.setTitle("Çıkış yapmak istediginize eminmisiniz?");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+
+                if(i==0){
+
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getApplicationContext(),LoginScreen.class);
+                    startActivity(intent);
+
+                }
+
+                if(i==1){
+
+
+
+
+                }
+
+            }
+        });
+
+        ////////////////////////////////////////////////////////
+
+        AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+    }
+
+
     @Override
     protected void onStop() {
         super.onStop();
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+
+        Intent intent  = new Intent(getApplicationContext(),HomeScreen.class);
+        startActivity(intent);
 
     }
 }

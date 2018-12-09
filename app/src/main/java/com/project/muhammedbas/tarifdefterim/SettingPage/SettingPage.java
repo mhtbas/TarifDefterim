@@ -1,4 +1,4 @@
-package com.project.muhammedbas.tarifdefterim;
+package com.project.muhammedbas.tarifdefterim.SettingPage;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.project.muhammedbas.tarifdefterim.LoginRegister.LoginScreen;
+import com.project.muhammedbas.tarifdefterim.R;
 import com.project.muhammedbas.tarifdefterim.Utils.ListItemSetting;
 
 import java.util.ArrayList;

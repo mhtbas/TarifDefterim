@@ -20,16 +20,20 @@
         <activity
             android:name=".HomeScreen"
             android:theme="@style/AppTheme" />
-        <activity android:name=".SettingPage" />
+        <activity android:name=".SettingPage.SettingPage" />
         <activity android:name=".SearchScreen" />
-        <activity
-            android:name=".AddRecipes"
+        <activity android:name=".AddRecipes"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".RecipeScreen"
+        <activity android:name=".RecipeScreen"
             android:theme="@style/AppTheme" />
         <activity android:name=".RecipeFullScreen"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SettingPage.HelpScreen"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".SettingPage.ContactScreen"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".SettingPage.FavoriteScreen"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

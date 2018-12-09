@@ -2,9 +2,9 @@ package com.project.muhammedbas.tarifdefterim.LoginRegister;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.project.muhammedbas.tarifdefterim.HomeScreen;
 import com.project.muhammedbas.tarifdefterim.R;
 
@@ -84,6 +85,7 @@ public class LoginScreen extends AppCompatActivity {
 
                                 Intent intent = new Intent(getApplicationContext(),HomeScreen.class);
                                 startActivity(intent);
+                                finish();
                             }
 
                         }
@@ -116,5 +118,24 @@ public class LoginScreen extends AppCompatActivity {
 
         progressDialog=new ProgressDialog(LoginScreen.this);
         mAuth=FirebaseAuth.getInstance();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user!=null){
+            Intent  intent = new Intent(LoginScreen.this,HomeScreen.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }
