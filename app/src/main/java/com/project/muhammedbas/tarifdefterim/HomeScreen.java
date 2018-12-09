@@ -298,11 +298,20 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull RecipeViewHolder holder, int position, @NonNull HomeList model) {
 
-                String recipeID=getRef(position).getKey();
+                final String recipeID=getRef(position).getKey();
                 Log.d("recipeıd",recipeID);
 
-
                 holder.setRecipename(recipeID);
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(getApplicationContext(),RecipeScreen.class);
+                        intent.putExtra("recipecategory",recipeID);
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override

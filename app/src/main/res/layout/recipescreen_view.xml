@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="10dp"
+
+    android:background="@drawable/recipe_list"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+
+            android:orientation="vertical"
+            android:id="@+id/content1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/recipename"
+                android:fontFamily="@font/nunito_bold"
+                android:textColor="@color/matBlack"
+                android:textSize="20sp"
+                android:text=""
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp" />
+
+            <View
+
+                android:background="@color/matBlack"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"></View>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:weightSum="3"
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/content1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/personCount"
+                android:text="1-2  kişilik"
+                android:layout_weight="1"
+                 android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/cookingTime"
+                android:text="1-2  kişilik"
+                android:textSize="17sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/preparationTime"
+                android:text="1-2  kişilik"
+                android:textSize="17sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
