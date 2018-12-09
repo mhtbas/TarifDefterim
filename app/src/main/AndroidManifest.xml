@@ -28,7 +28,8 @@
         <activity
             android:name=".RecipeScreen"
             android:theme="@style/AppTheme" />
-        <activity android:name=".RecipeFullScreen"></activity>
+        <activity android:name=".RecipeFullScreen"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

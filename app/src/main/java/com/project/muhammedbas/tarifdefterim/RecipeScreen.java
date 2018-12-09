@@ -100,7 +100,7 @@ public class RecipeScreen extends AppCompatActivity {
 
                         Intent intent = new Intent(getApplicationContext(),RecipeFullScreen.class);
                         intent.putExtra("personCount",model.getPersonCount());
-                        intent.putExtra("preparationTime",model.getPreparation());
+                        intent.putExtra("preparationTime",model.getPreparationTime());
                         intent.putExtra("cookingTime",model.getCookingTime());
                         intent.putExtra("category",model.getCategory());
                         intent.putExtra("recipeName",model.getRecipeName());
