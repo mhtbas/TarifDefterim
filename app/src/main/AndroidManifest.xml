@@ -21,7 +21,8 @@
             android:name=".HomeScreen"
             android:theme="@style/AppTheme" />
         <activity android:name=".SettingPage.SettingPage" />
-        <activity android:name=".SearchScreen" />
+        <activity android:name=".SearchScreen"
+            android:theme="@style/AppTheme" />
         <activity android:name=".AddRecipes"
             android:theme="@style/AppTheme" />
         <activity android:name=".RecipeScreen"
@@ -29,11 +30,11 @@
         <activity android:name=".RecipeFullScreen"
             android:theme="@style/AppTheme" />
         <activity android:name=".SettingPage.HelpScreen"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity android:name=".SettingPage.ContactScreen"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity android:name=".SettingPage.FavoriteScreen"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
