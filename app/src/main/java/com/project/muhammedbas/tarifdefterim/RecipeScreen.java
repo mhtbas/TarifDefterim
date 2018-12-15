@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -18,7 +20,9 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.project.muhammedbas.tarifdefterim.Utils.RecipeList;
+import com.project.muhammedbas.tarifdefterim.Utils.SearchList;
 
 public class RecipeScreen extends AppCompatActivity {
 
@@ -28,6 +32,9 @@ public class RecipeScreen extends AppCompatActivity {
     private String currentUser;
     private DatabaseReference mRecipeDatabase;
 
+    private EditText searchEdit;
+    private ImageView searchButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +42,15 @@ public class RecipeScreen extends AppCompatActivity {
 
         init();
 
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String text =searchEdit.getText().toString();
+                search(text);
+
+            }
+        });
 
     }
 
@@ -46,6 +62,8 @@ public class RecipeScreen extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(categoryname);
 
+        searchEdit=findViewById(R.id.search_field);
+        searchButton=findViewById(R.id.search_btn);
 
         recipeRecylerView=findViewById(R.id.recipescreenrcView);
         recipeRecylerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -83,9 +101,10 @@ public class RecipeScreen extends AppCompatActivity {
         FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<RecipeList,RecipeViewHolder>(options){
 
             @Override
-            protected void onBindViewHolder(@NonNull RecipeViewHolder holder, int position, @NonNull final RecipeList model) {
+            protected void onBindViewHolder(RecipeViewHolder holder, int position,final RecipeList model) {
 
-                String id=getRef(position).getKey();
+                final String id=getRef(position).getKey();
+
 
                 holder.setRecipeCookTime(model.getCookingTime());
                 holder.setRecipename(model.getRecipeName());
@@ -106,6 +125,7 @@ public class RecipeScreen extends AppCompatActivity {
                         intent.putExtra("recipeName",model.getRecipeName());
                         intent.putExtra("materials",model.getMaterials());
                         intent.putExtra("preparation",model.getPreparation());
+                        intent.putExtra("id",id);
                         startActivity(intent);
                     }
                 });
@@ -128,6 +148,63 @@ public class RecipeScreen extends AppCompatActivity {
         adapter.startListening();
     }
 
+    public void search(String searchString){
+
+        Query querysearch =mRecipeDatabase.orderByChild("recipeName").startAt(searchString).endAt(searchString+"\uf8ff");
+
+        FirebaseRecyclerOptions<SearchList> options = new FirebaseRecyclerOptions.Builder<SearchList>()
+                .setQuery(querysearch,SearchList.class).build();
+
+        FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<SearchList,SearchRecipeViewHolder>(options){
+
+            @Override
+            protected void onBindViewHolder(SearchRecipeViewHolder holder, int position,final SearchList model) {
+
+                String id=getRef(position).getKey();
+
+
+                holder.setRecipeCookTime(model.getCookingTime());
+                holder.setRecipename(model.getRecipeName());
+                holder.setRecipePerson(model.getPersonCount());
+                holder.setRecipePreTime(model.getPreparationTime());
+
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(getApplicationContext(),RecipeFullScreen.class);
+                        intent.putExtra("personCount",model.getPersonCount());
+                        intent.putExtra("preparationTime",model.getPreparationTime());
+                        intent.putExtra("cookingTime",model.getCookingTime());
+                        intent.putExtra("category",model.getCategory());
+                        intent.putExtra("recipeName",model.getRecipeName());
+                        intent.putExtra("materials",model.getMaterials());
+                        intent.putExtra("preparation",model.getPreparation());
+                        startActivity(intent);
+                    }
+                });
+
+
+            }
+
+            @Override
+            public SearchRecipeViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+
+                View recipe =LayoutInflater.from(getApplicationContext())
+                        .inflate(R.layout.recipescreen_view,parent,false);
+
+                return  new SearchRecipeViewHolder(recipe);
+
+            }
+
+        };
+
+        recipeRecylerView.setAdapter(adapter);
+        adapter.startListening();
+
+    }
+
     private class RecipeViewHolder extends  RecyclerView.ViewHolder{
 
         private View mView;
@@ -135,6 +212,44 @@ public class RecipeScreen extends AppCompatActivity {
 
 
         public RecipeViewHolder(View itemView) {
+            super(itemView);
+            mView=itemView;
+
+            recipename = mView.findViewById(R.id.recipename);
+            recipecooktime=mView.findViewById(R.id.cookingTime);
+            recipepretime=mView.findViewById(R.id.preparationTime);
+            recipeperson=mView.findViewById(R.id.personCount);
+
+
+        }
+
+        public void setRecipename(String recipenamestring){
+            recipename.setText(recipenamestring);
+        }
+
+        public void setRecipeCookTime(String recipeCookTime){
+            recipecooktime.setText(recipeCookTime);
+        }
+
+        public void setRecipePreTime(String recipePreTime){
+
+            recipepretime.setText(recipePreTime);
+        }
+
+        public void setRecipePerson(String recipePerson){
+
+            recipeperson.setText(recipePerson);
+        }
+
+    }
+
+    private class SearchRecipeViewHolder extends  RecyclerView.ViewHolder{
+
+        private View mView;
+        private TextView recipename,recipecooktime,recipepretime,recipeperson;
+
+
+        public SearchRecipeViewHolder(View itemView) {
             super(itemView);
             mView=itemView;
 

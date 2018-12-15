@@ -36,7 +36,6 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
-
         </LinearLayout>
 
         <View
@@ -132,6 +131,15 @@
                     android:textSize="17sp" />
             </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/favbutton"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp" />
+
+
+
+
             </LinearLayout>
         </LinearLayout>
 
@@ -184,6 +192,7 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
+
 
 
     </LinearLayout>

@@ -8,20 +8,25 @@
 
     <RelativeLayout
         android:id="@+id/content1"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_alignTop="@id/search_field"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
 
         <EditText
             android:id="@+id/search_field"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginStart="10dp"
-            android:textColorHint="@color/grey"
-            android:layout_toStartOf="@+id/search_btn"
+            android:layout_toRightOf="@+id/spinner"
+            android:background="@null"
             android:ems="10"
             android:fontFamily="@font/nunito_semibold"
             android:hint="Search"
@@ -31,22 +36,28 @@
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
             android:textColor="@color/matBlack"
+            android:textColorHint="@color/grey"
             android:textSize="16sp" />
 
+
         <ImageView
-            android:src="@drawable/search_button"
             android:padding="0dp"
+            android:src="@drawable/search_button"
             android:id="@+id/search_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/search_field"
-            android:layout_alignBottom="@+id/search_field"
+            android:layout_toRightOf="@+id/search_field"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="0dp"
-            android:background="@android:color/background_light"
             />
 
+        <View
+            android:layout_below="@id/search_field"
+            android:background="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></View>
     </RelativeLayout>
 
     <RelativeLayout
@@ -56,6 +67,9 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
             android:id="@+id/searchlist"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
