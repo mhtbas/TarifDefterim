@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -140,23 +141,19 @@ public class HomeScreen extends AppCompatActivity {
                         return true;
 
                     case R.id.nav_cal:
-                        Intent intent_cal = new Intent(getApplicationContext(),SettingPage.class);
-                        startActivity(intent_cal);
+                        Toast.makeText(getApplicationContext(),"Yakında Sizlerle",Toast.LENGTH_LONG).show();
                         return true;
 
                     case R.id.nav_seb:
-                        Intent intent_seb = new Intent(getApplicationContext(),SettingPage.class);
-                        startActivity(intent_seb);
+                        Toast.makeText(getApplicationContext(),"Yakında Sizlerle",Toast.LENGTH_LONG).show();
                         return true;
 
                     case R.id.nav_mev:
-                        Intent intent_mev = new Intent(getApplicationContext(),SettingPage.class);
-                        startActivity(intent_mev);
+                        Toast.makeText(getApplicationContext(),"Yakında Sizlerle",Toast.LENGTH_LONG).show();
                         return true;
 
                     case R.id.nav_fish:
-                        Intent intent_fish= new Intent(getApplicationContext(),SettingPage.class);
-                        startActivity(intent_fish);
+                        Toast.makeText(getApplicationContext(),"Yakında Sizlerle",Toast.LENGTH_LONG).show();
                         return true;
 
                     case R.id.nav_setting:

@@ -7,14 +7,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -24,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.project.muhammedbas.tarifdefterim.Utils.SearchList;
 
+import java.util.ArrayList;
+
 public class SearchScreen extends AppCompatActivity {
 
     private EditText searchEdit;
@@ -32,6 +37,8 @@ public class SearchScreen extends AppCompatActivity {
     private String currentUser;
     private RecyclerView searchRecyclerView;
     private DatabaseReference mRecipeDatabase;
+    private Spinner kategorispinner;
+    private String kategorispinnerString="Seçiniz";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +53,109 @@ public class SearchScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                searchString=searchEdit.getText().toString();
-                search(searchString);
+                if(kategorispinnerString.equals("Seçiniz")){
+
+                    Toast.makeText(getApplicationContext(),"Lütfen arama yapmak istediginiz kategoriyi seciniz",Toast.LENGTH_LONG).show();
+
+                }else{
+
+                    searchString=searchEdit.getText().toString();
+                    search(searchString);
+                }
+
             }
         });
 
+
+        ///////////////////////////////////////////////////// Spinner Arraylist////////////////////////////////////////////////
+
+        ArrayList<String> kategori = new ArrayList<>();
+        kategori.add("Seçiniz");
+        kategori.add("Ana Yemekler");
+        kategori.add("Salatalar");
+        kategori.add("Çorbalar");
+        kategori.add("Aparatif Yemekler");
+        kategori.add("Hamur İşleri");
+        kategori.add("Tatlilar");
+        kategori.add("Bebek Yemekleri");
+        kategori.add("Diyet Yemekleri");
+        kategori.add("Kahvaltılıklar");
+        kategori.add("Deniz Ürünleri");
+        kategori.add("Atıştırmalıklar");
+        kategori.add("İçeçekler");
+
+        ArrayAdapter kategoriadapter = new ArrayAdapter(getApplicationContext(),R.layout.spinner_layout,kategori);
+        kategoriadapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        kategorispinner.setAdapter(kategoriadapter);
+
+        ///////////////////////////////////////////////////// Spinner Select////////////////////////////////////////////////
+
+        kategorispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position==0){
+
+                    kategorispinnerString="Seçiniz";
+                }
+                if(position==1){
+
+                    kategorispinnerString="Ana Yemekler";
+                }
+                if(position==2){
+
+                    kategorispinnerString="Salatalar";
+                }
+                if(position==3){
+
+                    kategorispinnerString="Çorbalar";
+
+                }
+                if(position==4){
+
+                    kategorispinnerString="Aparatif Yemekler";
+                }
+                if(position==5){
+
+                    kategorispinnerString="Hamur İşleri";
+
+                }
+                if(position==6){
+                    kategorispinnerString="Tatlilar";
+
+                }
+                if(position==7){
+
+                    kategorispinnerString="Bebek Yemekleri";
+                }
+                if(position==8){
+
+                    kategorispinnerString="Diyet Yemekleri";
+                }
+                if(position==9){
+
+                    kategorispinnerString="Kahvaltılıklar";
+                }
+                if(position==10){
+
+                    kategorispinnerString="Deniz Ürünleri";
+                }
+                if(position==11){
+
+                    kategorispinnerString="Atıştırmalıklar";
+                }
+                if(position==12){
+
+                    kategorispinnerString="İçeçekler";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
@@ -62,10 +167,11 @@ public class SearchScreen extends AppCompatActivity {
 
         searchEdit=findViewById(R.id.search_field);
         searchbutton=findViewById(R.id.search_btn);
+        kategorispinner=findViewById(R.id.spinner);
 
         searchRecyclerView=findViewById(R.id.searchlist);
-        searchRecyclerView.setHasFixedSize(true);
         searchRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        searchRecyclerView.setHasFixedSize(true);
 
         currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
         mRecipeDatabase=FirebaseDatabase.getInstance().getReference().child("recipes").child(currentUser);
@@ -86,7 +192,6 @@ public class SearchScreen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
@@ -94,28 +199,31 @@ public class SearchScreen extends AppCompatActivity {
         search("");
     }
 
-    public void search(String searchString) {
+    @Override
+    public void onStop() {
+        super.onStop();
 
-        Query querysearch =mRecipeDatabase.orderByChild("recipeName").startAt(searchString).endAt(searchString+"\uf8ff");
+    }
+
+    public void search(String searchString){
+
+        Query querysearch =mRecipeDatabase.child(kategorispinnerString).orderByChild("recipeName").startAt(searchString).endAt(searchString+"\uf8ff");
 
         FirebaseRecyclerOptions<SearchList> options = new FirebaseRecyclerOptions.Builder<SearchList>()
                 .setQuery(querysearch,SearchList.class).build();
-
 
         FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<SearchList,SearchRecipeViewHolder>(options){
 
             @Override
             protected void onBindViewHolder(SearchRecipeViewHolder holder, int position,final SearchList model) {
 
+                final String id=getRef(position).getKey();
 
-                String id=getRef(position).getKey();
 
                 holder.setRecipeCookTime(model.getCookingTime());
-                Log.d("searchsss",model.getRecipeName());
                 holder.setRecipename(model.getRecipeName());
                 holder.setRecipePerson(model.getPersonCount());
                 holder.setRecipePreTime(model.getPreparationTime());
-
 
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -130,10 +238,11 @@ public class SearchScreen extends AppCompatActivity {
                         intent.putExtra("recipeName",model.getRecipeName());
                         intent.putExtra("materials",model.getMaterials());
                         intent.putExtra("preparation",model.getPreparation());
+                        intent.putExtra("id",id);
                         startActivity(intent);
-
                     }
                 });
+
 
             }
 
@@ -153,6 +262,7 @@ public class SearchScreen extends AppCompatActivity {
         adapter.startListening();
 
     }
+
 
     private class SearchRecipeViewHolder extends  RecyclerView.ViewHolder{
 
@@ -194,10 +304,6 @@ public class SearchScreen extends AppCompatActivity {
 
 
 
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 
 
 }
