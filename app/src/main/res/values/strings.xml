@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Lezzetli Notlar</string>
 
+    <string name="login_email">Lütfen e-mail giriniz</string>
     <string name="login_pass">Lütfen şifrenizi giriniz</string>
     <string name="login_dialog">Giriş Yapılıyor..</string>
 
@@ -46,5 +47,15 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
+
+
+
+    <string name="email">Email</string>
+    <string name="password">Şifre</string>
+    <string name="username">Adınız</string>
+    <string name="login">Giriş</string>
+    <string name="register">KayıtOl</string>
+    <string name="nowlogin">Hesabın varmı hemen Giriş yap !</string>
+    <string name="nowsignup">Hemen üye ol</string>
 
 </resources>

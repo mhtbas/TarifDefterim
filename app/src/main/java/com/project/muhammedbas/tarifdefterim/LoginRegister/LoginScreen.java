@@ -73,7 +73,7 @@ public class LoginScreen extends AppCompatActivity {
                     String namestring = name.getText().toString();
                     String passstring = pass.getText().toString();
 
-                    progressDialog.setMessage(String.valueOf(R.string.login_dialog));
+                    progressDialog.setMessage(getString(R.string.login_dialog));
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 

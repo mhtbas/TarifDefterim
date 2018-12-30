@@ -107,7 +107,7 @@ public class HomeScreen extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 String username=dataSnapshot.child("name").getValue().toString();
-                usernameText.setText(username+"'"+R.string.home_own);
+                usernameText.setText(username+"'"+getString(R.string.home_own));
 
             }
 
@@ -315,7 +315,7 @@ public class HomeScreen extends AppCompatActivity {
 
         AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(HomeScreen.this);
 
-        CharSequence options[] = new CharSequence[]{String.valueOf(R.string.setting_logout),String.valueOf(R.string.setting_cancel)};
+        CharSequence options[] = new CharSequence[]{getString(R.string.setting_logout),getString(R.string.setting_cancel)};
 
         builder.setTitle(R.string.setting_log);
         builder.setItems(options, new DialogInterface.OnClickListener() {
