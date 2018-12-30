@@ -107,7 +107,7 @@ public class HomeScreen extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 String username=dataSnapshot.child("name").getValue().toString();
-                usernameText.setText(username+"'in tarifleri");
+                usernameText.setText(username+"'"+R.string.home_own);
 
             }
 
@@ -315,9 +315,9 @@ public class HomeScreen extends AppCompatActivity {
 
         AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(HomeScreen.this);
 
-        CharSequence options[] = new CharSequence[]{"Çıkış","İptal"};
+        CharSequence options[] = new CharSequence[]{String.valueOf(R.string.setting_logout),String.valueOf(R.string.setting_cancel)};
 
-        builder.setTitle("Çıkış yapmak istediginize eminmisiniz?");
+        builder.setTitle(R.string.setting_log);
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {

@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Lezzetli Notlar</string>
+
+    <string name="login_pass">Lütfen şifrenizi giriniz</string>
+    <string name="login_dialog">Giriş Yapılıyor..</string>
+
+
+    <string name="register_fillall">Lütfen Boşlukları Doldurun</string>
+    <string name="register_email">E-mail boş bırakılamaz</string>
+    <string name="register_pass">Şifre boş bırakılamaz</string>
+    <string name="register_name">İsim boş bırakılamaz</string>
+    <string name="register_dialog">Kayıt Oluşturuluyor..</string>
+
+
+    <string name="contact">İletişim</string>
+    <string name="fav_recipe">Favori Tariflerim</string>
+    <string name="help">Yardım</string>
+    <string name="setting">Ayarlar</string>
+
+
+    <string name="setting_account">Hesap Ayarları</string>
+    <string name="setting_pass">Şifre Degiştir</string>
+    <string name="setting_language">Dil Seçimi</string>
+    <string name="setting_logout">Çıkış</string>
+    <string name="setting_log">Çıkış yapmak istediginize eminmisiniz?</string>
+    <string name="setting_cancel">İptal</string>
+
+
+    <string name="addrecipe">Tarif Ekle</string>
+    <string name="addrecipe_recipename">Tarif adı boş bırakılamaz</string>
+    <string name="addrecipe_recipemate">Malzemeler boş bırakılamaz</string>
+    <string name="addrecipe_recipeprep">Hazırlanış boş bırakılamaz</string>
+    <string name="addrecipe_person">Kaç kişilik seçiniz</string>
+    <string name="addrecipe_prepa">Hazırlanma süresini seçiniz</string>
+    <string name="addrecipe_cookingtime">Pişirme süresini seçiniz</string>
+    <string name="addrecipe_category">Lütfen Kategori seçiniz</string>
+    <string name="addrecipe_dialog">Tarifiniz Ekleniyor..</string>
+    <string name="addrecipe_dialogconfirmed">Tarif Ekleme Başarılı</string>
+
+    <string name="home_own">in tarifleri</string>
+
+    <string name="recipefull_favadd">Favorilerinize Eklendi</string>
+    <string name="recipefull_favremove">Favorilerinizden Çıkardınız</string>
+
+    <string name="search_choose">Lütfen arama yapmak istediginiz kategoriyi seciniz</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+</resources>

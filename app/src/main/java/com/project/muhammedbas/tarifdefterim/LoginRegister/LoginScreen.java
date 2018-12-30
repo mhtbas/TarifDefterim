@@ -57,12 +57,12 @@ public class LoginScreen extends AppCompatActivity {
 
 
                 if (TextUtils.isEmpty(name.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),"Lütfen doldurun", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.login_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else
                 if (TextUtils.isEmpty(pass.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Lütfen doldurun", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.login_pass, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else{
@@ -73,7 +73,7 @@ public class LoginScreen extends AppCompatActivity {
                     String namestring = name.getText().toString();
                     String passstring = pass.getText().toString();
 
-                    progressDialog.setMessage("Giriş Yapılıyor..");
+                    progressDialog.setMessage(String.valueOf(R.string.login_dialog));
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 

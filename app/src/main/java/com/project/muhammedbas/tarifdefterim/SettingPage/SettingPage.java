@@ -62,9 +62,9 @@ public class SettingPage extends AppCompatActivity {
 
                     AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(SettingPage.this);
 
-                    CharSequence options[] = new CharSequence[]{"Çıkış","İptal"};
+                    CharSequence options[] = new CharSequence[]{String.valueOf(R.string.setting_logout),String.valueOf(R.string.setting_cancel)};
 
-                    builder.setTitle("Çıkış yapmak istediginize eminmisiniz?");
+                    builder.setTitle(R.string.setting_log);
                     builder.setItems(options, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
@@ -103,10 +103,10 @@ public class SettingPage extends AppCompatActivity {
 
         settingArrayList=new ArrayList();
 
-        settingArrayList.add(new ListItemSetting("Hesap Ayarları"));
-        settingArrayList.add(new ListItemSetting("Şifre Degiştir"));
-        settingArrayList.add(new ListItemSetting("Dil Seçimi"));
-        settingArrayList.add(new ListItemSetting("Çıkış"));
+        settingArrayList.add(new ListItemSetting(getString(R.string.setting_account)));
+        settingArrayList.add(new ListItemSetting(getString(R.string.setting_pass)));
+        settingArrayList.add(new ListItemSetting(getString(R.string.setting_language)));
+        settingArrayList.add(new ListItemSetting(getString(R.string.setting_logout)));
 
         ListAdapter listAdapter = new ListAdapter(settingArrayList);
         settingList.setAdapter(listAdapter);

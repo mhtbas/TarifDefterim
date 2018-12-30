@@ -55,7 +55,7 @@ public class SearchScreen extends AppCompatActivity {
 
                 if(kategorispinnerString.equals("Seçiniz")){
 
-                    Toast.makeText(getApplicationContext(),"Lütfen arama yapmak istediginiz kategoriyi seciniz",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),R.string.search_choose,Toast.LENGTH_LONG).show();
 
                 }else{
 
@@ -84,7 +84,7 @@ public class SearchScreen extends AppCompatActivity {
         kategori.add("Atıştırmalıklar");
         kategori.add("İçeçekler");
 
-        ArrayAdapter kategoriadapter = new ArrayAdapter(getApplicationContext(),R.layout.spinner_layout,kategori);
+        ArrayAdapter kategoriadapter = new ArrayAdapter(this,R.layout.spinner_layout,kategori);
         kategoriadapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         kategorispinner.setAdapter(kategoriadapter);
 

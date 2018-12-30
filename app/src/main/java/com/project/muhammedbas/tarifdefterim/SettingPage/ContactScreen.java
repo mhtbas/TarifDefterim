@@ -21,7 +21,7 @@ public class ContactScreen extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("İletişim");
+        actionBar.setTitle(R.string.contact);
 
     }
 

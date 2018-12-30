@@ -22,7 +22,7 @@ public class HelpScreen extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Yardım");
+        actionBar.setTitle(R.string.help);
 
     }
 

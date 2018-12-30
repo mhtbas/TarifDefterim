@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:textSize="18dp"
+            android:textColor="@color/matBlack"
+            android:paddingLeft="10dp"
+            android:text="Tarifi Sil"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <View
+            android:background="@color/matBlack"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            />
+
+        <TextView
+            android:gravity=""
+            android:padding="8dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="15dp"
+            android:textColor="@color/matBlack"
+            android:paddingLeft="10dp"
+            android:text="Tarifi silmek istediginden eminmisin ? "
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/matBlack"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:weightSum="2.0"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:text="evet"
+            android:textColor="@color/matBlack"
+            android:background="@color/silverwhite"
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:text="ıptal"
+            android:textColor="@color/matBlack"
+            android:background="@color/silverwhite"
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

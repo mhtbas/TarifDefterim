@@ -6,59 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".SearchScreen">
 
-    <RelativeLayout
+    <LinearLayout
+        android:weightSum="3"
+        android:orientation="horizontal"
         android:id="@+id/content1"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content">
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_alignTop="@id/search_field"
-
-            android:layout_marginStart="10dp"
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content">
+            <Spinner
 
-        <EditText
-            android:id="@+id/search_field"
+                android:id="@+id/spinner"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Spinner>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_toRightOf="@+id/spinner"
-            android:background="@null"
-            android:ems="10"
-            android:fontFamily="@font/nunito_semibold"
-            android:hint="Search"
-            android:inputType="textPersonName"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/matBlack"
-            android:textColorHint="@color/grey"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/search_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/spinner"
+                android:background="@null"
+                android:ems="10"
+                android:fontFamily="@font/nunito_semibold"
+                android:hint="Search"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/matBlack"
+                android:textColorHint="@color/grey"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+android:padding="1dp"
+                android:src="@drawable/search_button"
+                android:id="@+id/search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+
+        </LinearLayout>
 
 
-        <ImageView
+    </LinearLayout>
 
-            android:src="@drawable/search_button"
-            android:id="@+id/search_btn"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignTop="@+id/search_field"
-            android:layout_toRightOf="@+id/search_field"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="0dp"
-            />
-
-        <View
-            android:layout_below="@id/search_field"
-            android:background="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"></View>
-    </RelativeLayout>
+    <View
+        android:layout_below="@id/content1"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
 
     <RelativeLayout
         android:layout_marginTop="10dp"

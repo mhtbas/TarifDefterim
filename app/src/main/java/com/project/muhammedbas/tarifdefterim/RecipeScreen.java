@@ -17,10 +17,16 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.project.muhammedbas.tarifdefterim.Utils.DeleteDialog;
 import com.project.muhammedbas.tarifdefterim.Utils.RecipeList;
 import com.project.muhammedbas.tarifdefterim.Utils.SearchList;
 
@@ -31,6 +37,7 @@ public class RecipeScreen extends AppCompatActivity {
 
     private String currentUser;
     private DatabaseReference mRecipeDatabase;
+    private DatabaseReference mFavoriteDatabase;
 
     private EditText searchEdit;
     private ImageView searchButton;
@@ -71,7 +78,7 @@ public class RecipeScreen extends AppCompatActivity {
 
         currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
         mRecipeDatabase=FirebaseDatabase.getInstance().getReference().child("recipes").child(currentUser).child(categoryname);
-
+        mFavoriteDatabase=FirebaseDatabase.getInstance().getReference().child("favorite").child(currentUser);
 
     }
 
@@ -127,6 +134,77 @@ public class RecipeScreen extends AppCompatActivity {
                         intent.putExtra("preparation",model.getPreparation());
                         intent.putExtra("id",id);
                         startActivity(intent);
+                    }
+                });
+
+                holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+
+
+                        final DeleteDialog deleteDialog=new DeleteDialog(RecipeScreen.this);
+                        deleteDialog.show();
+
+
+                        deleteDialog.delete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                ////////////////// Recipe Deleting ///////////////////////////////////////
+
+
+                                mRecipeDatabase.child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                        if(task.isSuccessful()){
+
+
+                                            mFavoriteDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                                    if(dataSnapshot.hasChild(id)){
+
+                                                        mFavoriteDatabase.child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                                if(task.isSuccessful()){
+
+                                                                    deleteDialog.dismiss();
+                                                                }
+                                                            }
+                                                        });
+
+
+                                                    }else{
+
+                                                        deleteDialog.dismiss();
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+
+
+                            }
+                        });
+
+                        deleteDialog.cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                deleteDialog.dismiss();
+                            }
+                        });
+
+                        return true;
                     }
                 });
 

@@ -50,7 +50,7 @@ public class AddRecipes extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Tarif Ekle");
+        actionBar.setTitle(R.string.addrecipe);
 
         init();
         spinnerAdapters();
@@ -106,42 +106,42 @@ public class AddRecipes extends AppCompatActivity {
     public void saveClick(){
 
         if (TextUtils.isEmpty(tarifadıET.getText().toString())) {
-            Toast.makeText(getApplicationContext(),"Lütfen doldurun", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.addrecipe_recipename, Toast.LENGTH_SHORT).show();
             return;
         }else
         if (TextUtils.isEmpty(malzemelerET.getText().toString())) {
-            Toast.makeText(getApplicationContext(),"Lütfen doldurun", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.addrecipe_recipemate, Toast.LENGTH_SHORT).show();
             return;
         }else
         if (TextUtils.isEmpty(hazırlanısET.getText().toString())) {
-            Toast.makeText(getApplicationContext(),"Lütfen doldurun", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.addrecipe_recipeprep, Toast.LENGTH_SHORT).show();
             return;
         }else{
 
 
             if(kackişilikspinnerString.equals("Seçiniz")){
 
-                Toast.makeText(getApplicationContext(),"Kaç kişilik seçiniz", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.addrecipe_person, Toast.LENGTH_SHORT).show();
 
 
             }else if(hazırlanmaspinnerString.equals("Seçiniz")){
 
-                Toast.makeText(getApplicationContext(),"Hazırlanma süresini seçiniz", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.addrecipe_prepa, Toast.LENGTH_SHORT).show();
 
 
             }else if(pişirmespinnerString.equals("Seçiniz")){
 
-                Toast.makeText(getApplicationContext(),"Pişirme süresini seçiniz", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.addrecipe_cookingtime, Toast.LENGTH_SHORT).show();
 
 
             }else if(kategorispinnerString.equals("Seçiniz")){
 
-                Toast.makeText(getApplicationContext(),"Lütfen Kategori seçiniz", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.addrecipe_category, Toast.LENGTH_SHORT).show();
 
             }else{
 
 
-                progressDialog.setMessage("Tarifiniz Ekleniyor");
+                progressDialog.setMessage(String.valueOf(R.string.addrecipe_dialog));
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
@@ -173,7 +173,7 @@ public class AddRecipes extends AppCompatActivity {
 
                             progressDialog.dismiss();
 
-                            Toast.makeText(getApplicationContext(),"Tarif Ekleme Başarılı",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),R.string.addrecipe_dialogconfirmed,Toast.LENGTH_LONG).show();
                             finish();
                         }
 
@@ -218,7 +218,7 @@ public class AddRecipes extends AppCompatActivity {
         kackisilik.add("6-8  kişilik");
         kackisilik.add("8-10 kişilik");
 
-        ArrayAdapter kackisilikadapter = new ArrayAdapter(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,kackisilik);
+        ArrayAdapter kackisilikadapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,kackisilik);
         kackisilikadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kackişilikspinner.setAdapter(kackisilikadapter);
 
@@ -239,7 +239,7 @@ public class AddRecipes extends AppCompatActivity {
         hazırlanma.add("3 saat");
 
 
-        ArrayAdapter hazırlanmaadapter = new ArrayAdapter(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,hazırlanma);
+        ArrayAdapter hazırlanmaadapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,hazırlanma);
         hazırlanmaspinner.setAdapter(hazırlanmaadapter);
 
         //////////////////////////////////////////////////////////
@@ -259,7 +259,7 @@ public class AddRecipes extends AppCompatActivity {
         kategori.add("Atıştırmalıklar");
         kategori.add("İçeçekler");
 
-        ArrayAdapter kategoriadapter = new ArrayAdapter(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,kategori);
+        ArrayAdapter kategoriadapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,kategori);
         kategorispinner.setAdapter(kategoriadapter);
 
 
@@ -280,7 +280,7 @@ public class AddRecipes extends AppCompatActivity {
         pişirme.add("3 saat");
 
 
-        ArrayAdapter pişirmeadapter = new ArrayAdapter(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,pişirme);
+        ArrayAdapter pişirmeadapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,pişirme);
         pişirmespinner.setAdapter(pişirmeadapter);
 
     }

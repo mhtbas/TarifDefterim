@@ -114,7 +114,7 @@ public class RecipeFullScreen extends AppCompatActivity {
 
                             if(task.isSuccessful()){
 
-                                Toast.makeText(getApplicationContext(),"Favorilerinize Eklendi",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),R.string.recipefull_favadd,Toast.LENGTH_LONG).show();
                                 favIcon.setImageDrawable(staryellow);
                                 favornot=true;
                             }
@@ -127,7 +127,7 @@ public class RecipeFullScreen extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            Toast.makeText(getApplicationContext(),"Favorilerinizden Çıkardınız",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),R.string.recipefull_favremove,Toast.LENGTH_LONG).show();
                             favornot=false;
                             favIcon.setImageDrawable(stargrey);
                         }

@@ -45,7 +45,7 @@ public class FavoriteScreen extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Favori Tariflerim");
+        actionBar.setTitle(R.string.fav_recipe);
 
         currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
         favDatabase=FirebaseDatabase.getInstance().getReference().child("favorite").child(currentUser);

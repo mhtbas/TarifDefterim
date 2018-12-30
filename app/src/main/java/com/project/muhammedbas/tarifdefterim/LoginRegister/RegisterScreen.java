@@ -2,27 +2,22 @@ package com.project.muhammedbas.tarifdefterim.LoginRegister;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.project.muhammedbas.tarifdefterim.R;
 import com.project.muhammedbas.tarifdefterim.Utils.Users;
 
@@ -60,21 +55,21 @@ public class RegisterScreen extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(email.getText().toString())||(TextUtils.isEmpty(pass.getText().toString()))
                         ||(TextUtils.isEmpty(name.getText().toString()))){
-                    Toast.makeText(getApplicationContext(),"Lütfen Boşlukları Doldurun", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.register_fillall, Toast.LENGTH_SHORT).show();
 
                 }else
                 if (TextUtils.isEmpty(email.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),"Lütfen e-mail giriniz", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.register_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else
                 if (TextUtils.isEmpty(pass.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Lütfen şifrenizi doldurunuz", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.register_pass, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else
                 if(TextUtils.isEmpty(name.getText().toString())){
-                    Toast.makeText(getApplicationContext(),"Lütfen isminizi doldurunuz", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.register_name, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else{
@@ -86,7 +81,7 @@ public class RegisterScreen extends AppCompatActivity {
                     final String passstring=pass.getText().toString();
                     final String emailstring=email.getText().toString();
 
-                    progressDialog.setMessage("Bilgiler Kaydediliyor..");
+                    progressDialog.setMessage(String.valueOf(R.string.register_dialog));
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
