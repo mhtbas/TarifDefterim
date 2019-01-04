@@ -6,14 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +43,11 @@ public class AddRecipes extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
+    private int pageID;
+    private RelativeLayout page1Relative,page2Relative,page3Relative;
+    private Button next, back;
+    private HashMap add;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,11 +61,161 @@ public class AddRecipes extends AppCompatActivity {
         spinnerAdapters();
         selectedCount();
 
+        add = new HashMap();
+
+
+
+
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(pageID==1){
+
+                    if (TextUtils.isEmpty(tarifadıET.getText().toString())) {
+
+                        Toast.makeText(getApplicationContext(),R.string.addrecipe_recipename, Toast.LENGTH_SHORT).show();
+
+                    }else if(kackişilikspinnerString.equals("Seçiniz")){
+
+                        Toast.makeText(getApplicationContext(),R.string.addrecipe_person, Toast.LENGTH_SHORT).show();
+
+
+                    }else if(hazırlanmaspinnerString.equals("Seçiniz")){
+
+                        Toast.makeText(getApplicationContext(),R.string.addrecipe_prepa, Toast.LENGTH_SHORT).show();
+
+
+                    }else if(pişirmespinnerString.equals("Seçiniz")){
+
+                        Toast.makeText(getApplicationContext(),R.string.addrecipe_cookingtime, Toast.LENGTH_SHORT).show();
+
+
+                    }else if(kategorispinnerString.equals("Seçiniz")){
+
+                        Toast.makeText(getApplicationContext(),R.string.addrecipe_category, Toast.LENGTH_SHORT).show();
+
+                    }
+                    else
+                        {
+                            String tarifAdıString =tarifadıET.getText().toString();
+
+                            add.put("recipeName",tarifAdıString);
+                            add.put("personCount",kackişilikspinnerString);
+                            add.put("preparationTime",hazırlanmaspinnerString);
+                            add.put("cookingTime",pişirmespinnerString);
+                            add.put("category",kategorispinnerString);
+
+                            pageID=2;
+                            page1Relative.setVisibility(View.INVISIBLE);
+                            page2Relative.setVisibility(View.VISIBLE);
+                            back.setVisibility(View.VISIBLE);
+                            next.setText("İleri");
+
+                    }
+
+                }else if(pageID==2){
+
+                    if (TextUtils.isEmpty(malzemelerET.getText().toString())) {
+
+                        Toast.makeText(getApplicationContext(),R.string.addrecipe_recipemate, Toast.LENGTH_SHORT).show();
+
+                    }else
+                        {
+                            String malzemelerString =malzemelerET.getText().toString();
+                            add.put("materials",malzemelerString);
+
+
+                            pageID=3;
+                            page2Relative.setVisibility(View.INVISIBLE);
+                            page3Relative.setVisibility(View.VISIBLE);
+                            back.setVisibility(View.VISIBLE);
+                            next.setText("Kaydet");
+
+                    }
+
+
+
+                }else if(pageID==3){
+
+                    if (TextUtils.isEmpty(hazırlanısET.getText().toString())) {
+
+                        Toast.makeText(getApplicationContext(),R.string.addrecipe_recipeprep, Toast.LENGTH_SHORT).show();
+
+                    }else {
+                        String hazırlanışString =hazırlanısET.getText().toString();
+
+                        add.put("preparation",hazırlanışString);
+
+                        progressDialog.setMessage(String.valueOf(R.string.addrecipe_dialog));
+                        progressDialog.setCanceledOnTouchOutside(false);
+                        progressDialog.show();
+
+                        DatabaseReference pushAdd = mRecipes.child(currentUser).child(kategorispinnerString).push();
+                        final String push_id = pushAdd.getKey();
+
+                        mRecipes.child(currentUser).child(kategorispinnerString).child(push_id).setValue(add).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                                if(task.isSuccessful()){
+
+                                    progressDialog.dismiss();
+
+                                    Toast.makeText(getApplicationContext(),R.string.addrecipe_dialogconfirmed,Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                progressDialog.dismiss();
+
+                            }
+                        });
+
+                    }
+
+                }
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(pageID==1){
+
+                }else if(pageID==2){
+
+                    pageID=1;
+                    page2Relative.setVisibility(View.INVISIBLE);
+                    page1Relative.setVisibility(View.VISIBLE);
+                    back.setVisibility(View.INVISIBLE);
+                    next.setText("İleri");
+
+                }else if(pageID==3){
+
+                    pageID=2;
+                    page3Relative.setVisibility(View.INVISIBLE);
+                    page2Relative.setVisibility(View.VISIBLE);
+                    next.setText("İleri");
+
+                }else{
+
+
+                }
+            }
+        });
 
     }
 
     public void init(){
 
+        pageID=1;
         kackişilikspinner=findViewById(R.id.kackişilik);
         hazırlanmaspinner=findViewById(R.id.hazırlanma);
         kategorispinner=findViewById(R.id.kategori);
@@ -69,6 +224,11 @@ public class AddRecipes extends AppCompatActivity {
         malzemelerET=findViewById(R.id.malzemelerEditText);
         tarifadıET=findViewById(R.id.tarifadı);
 
+        page1Relative=findViewById(R.id.page1);
+        page2Relative=findViewById(R.id.page2);
+        page3Relative=findViewById(R.id.page3);
+        next=findViewById(R.id.nextButton);
+        back=findViewById(R.id.backButton);
 
         currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
         mUserDatabase=FirebaseDatabase.getInstance().getReference().child("users").child(currentUser);
@@ -79,9 +239,6 @@ public class AddRecipes extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.add_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -95,116 +252,10 @@ public class AddRecipes extends AppCompatActivity {
                 this.finish();
                 return true;
 
-            case R.id.save:
-                saveClick();
-                return  true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void saveClick(){
-
-        if (TextUtils.isEmpty(tarifadıET.getText().toString())) {
-            Toast.makeText(getApplicationContext(),R.string.addrecipe_recipename, Toast.LENGTH_SHORT).show();
-            return;
-        }else
-        if (TextUtils.isEmpty(malzemelerET.getText().toString())) {
-            Toast.makeText(getApplicationContext(),R.string.addrecipe_recipemate, Toast.LENGTH_SHORT).show();
-            return;
-        }else
-        if (TextUtils.isEmpty(hazırlanısET.getText().toString())) {
-            Toast.makeText(getApplicationContext(),R.string.addrecipe_recipeprep, Toast.LENGTH_SHORT).show();
-            return;
-        }else{
-
-
-            if(kackişilikspinnerString.equals("Seçiniz")){
-
-                Toast.makeText(getApplicationContext(),R.string.addrecipe_person, Toast.LENGTH_SHORT).show();
-
-
-            }else if(hazırlanmaspinnerString.equals("Seçiniz")){
-
-                Toast.makeText(getApplicationContext(),R.string.addrecipe_prepa, Toast.LENGTH_SHORT).show();
-
-
-            }else if(pişirmespinnerString.equals("Seçiniz")){
-
-                Toast.makeText(getApplicationContext(),R.string.addrecipe_cookingtime, Toast.LENGTH_SHORT).show();
-
-
-            }else if(kategorispinnerString.equals("Seçiniz")){
-
-                Toast.makeText(getApplicationContext(),R.string.addrecipe_category, Toast.LENGTH_SHORT).show();
-
-            }else{
-
-
-                progressDialog.setMessage(String.valueOf(R.string.addrecipe_dialog));
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
-
-                String tarifAdıString =tarifadıET.getText().toString();
-                String malzemelerString =malzemelerET.getText().toString();
-                String hazırlanışString =hazırlanısET.getText().toString();
-
-                Log.d("StringAll",kackişilikspinnerString+hazırlanmaspinnerString+pişirmespinnerString+kategorispinnerString);
-
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                HashMap add = new HashMap();
-                add.put("personCount",kackişilikspinnerString);
-                add.put("preparationTime",hazırlanmaspinnerString);
-                add.put("cookingTime",pişirmespinnerString);
-                add.put("category",kategorispinnerString);
-                add.put("recipeName",tarifAdıString);
-                add.put("materials",malzemelerString);
-                add.put("preparation",hazırlanışString);
-
-                DatabaseReference pushAdd = mRecipes.child(currentUser).child(kategorispinnerString).push();
-                final String push_id = pushAdd.getKey();
-
-                mRecipes.child(currentUser).child(kategorispinnerString).child(push_id).setValue(add).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        if(task.isSuccessful()){
-
-                            progressDialog.dismiss();
-
-                            Toast.makeText(getApplicationContext(),R.string.addrecipe_dialogconfirmed,Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                        progressDialog.dismiss();
-
-                    }
-                });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            }
-        }
-
-    }
-
 
     public void spinnerAdapters(){
 
