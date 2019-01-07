@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,7 +51,7 @@ public class HomeScreen extends AppCompatActivity {
     private String currentUser;
     private RecyclerView listTarifList;
 
-
+    private RelativeLayout recylerlayout;
     private FloatingActionButton addRecipes;
 
     private TextView addText;
@@ -73,31 +74,7 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-        /////////////////////////// check user have recipes =  ? /////////////////////////////////////////
 
-        mRecipes.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if(dataSnapshot.hasChild("")){
-
-                    addText.setVisibility(View.INVISIBLE);
-                    addText.setEnabled(false);
-
-                }else{
-
-                    addText.setVisibility(View.VISIBLE);
-                    addText.setEnabled(true);
-                }
-
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
         ////////////////////////////////////// user name upload ///////////////////////////////////////////
@@ -230,7 +207,7 @@ public class HomeScreen extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        recylerlayout=findViewById(R.id.recylerlayout);
         usernameText=findViewById(R.id.username);
         addText=findViewById(R.id.addtext);
         addRecipes=findViewById(R.id.addTarifButton);
@@ -247,6 +224,33 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        /////////////////////////// check user have recipes =  ? /////////////////////////////////////////
+
+        mRecipes.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.hasChild("")){
+
+                    addText.setVisibility(View.INVISIBLE);
+                    recylerlayout.setVisibility(View.VISIBLE);
+                    addText.setEnabled(false);
+
+                }else{
+                    recylerlayout.setVisibility(View.INVISIBLE);
+                    addText.setVisibility(View.VISIBLE);
+                    addText.setEnabled(true);
+                }
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         FirebaseRecyclerOptions<HomeList> options = new FirebaseRecyclerOptions.Builder<HomeList>()

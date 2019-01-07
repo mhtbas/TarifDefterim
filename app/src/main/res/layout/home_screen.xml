@@ -45,7 +45,6 @@
                  android:layout_below="@+id/view"
                  android:layout_alignParentStart="true"
                  android:layout_marginStart="0dp"
-                 android:layout_marginTop="-1dp"
                  android:fontFamily="@font/nunito_bold"
                  android:gravity="center"
                  android:paddingLeft="40dp"
@@ -55,18 +54,20 @@
 Hemen eklemek için tıklayın !"
                  android:textColor="@color/grey"
                  android:textSize="24sp"
-                 android:visibility="invisible" />
+                 android:visibility="visible" />
 
              <RelativeLayout
+                 android:id="@+id/recylerlayout"
                  android:background="@color/silverwhite"
                  android:layout_below="@+id/view"
                  android:layout_width="match_parent"
                  android:layout_height="match_parent">
+
                  <android.support.v7.widget.RecyclerView
-                     android:layout_marginTop="20dp"
-                     android:layout_marginLeft="15dp"
-                     android:layout_marginRight="15dp"
-                     android:layout_marginBottom="15dp"
+                     android:paddingTop="20dp"
+                     android:paddingLeft="15dp"
+                     android:paddingRight="15dp"
+                     android:paddingBottom="15dp"
                      android:id="@+id/listTarifList"
                      android:layout_width="match_parent"
                      android:layout_height="match_parent">

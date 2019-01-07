@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -33,6 +34,9 @@ public class FavoriteScreen extends AppCompatActivity {
     private DatabaseReference favDatabase;
     private String currentUser;
 
+    private RelativeLayout relativeLayout;
+    private TextView favText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +52,15 @@ public class FavoriteScreen extends AppCompatActivity {
         actionBar.setTitle(R.string.fav_recipe);
 
         currentUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         favDatabase=FirebaseDatabase.getInstance().getReference().child("favorite").child(currentUser);
+        favText=findViewById(R.id.favtext);
 
         favRecyler=findViewById(R.id.favrecyler);
         favRecyler.setHasFixedSize(true);
         favRecyler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
+        relativeLayout=findViewById(R.id.content1);
     }
 
     @Override
@@ -74,6 +81,32 @@ public class FavoriteScreen extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        /////////////////////////// check user have recipes =  ? /////////////////////////////////////////
+
+        favDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.hasChild("")){
+
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    favText.setVisibility(View.INVISIBLE);
+
+                }else{
+
+                    relativeLayout.setVisibility(View.INVISIBLE);
+                    favText.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         FirebaseRecyclerOptions<FavList> options = new FirebaseRecyclerOptions.Builder<FavList>()
                 .setQuery(favDatabase,FavList.class).build();

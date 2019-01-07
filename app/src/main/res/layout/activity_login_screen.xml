@@ -8,6 +8,21 @@
     tools:context=".LoginRegister.LoginScreen">
 
     <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/appicon" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/content2"
         android:layout_above="@+id/registerbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +85,7 @@
         android:layout_marginBottom="10dp"
         android:textAllCaps="false"
         android:id="@+id/registerbutton"
-        android:textColor="@color/silverwhite"
+        android:textColor="@color/white"
         android:layout_weight="1.0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

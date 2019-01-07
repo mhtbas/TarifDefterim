@@ -49,8 +49,13 @@ public class SettingPage extends AppCompatActivity {
 
                 if(position==0){
 
+                    Intent intent = new Intent(getApplicationContext(),AccountSetting.class);
+                    startActivity(intent);
                 }else
                 if(position==1){
+
+                    Intent intent = new Intent(getApplicationContext(),PasswordChange.class);
+                    startActivity(intent);
 
                 }else
                 if(position==2){

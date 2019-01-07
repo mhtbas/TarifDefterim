@@ -49,7 +49,6 @@
     <string name="close">Close</string>
 
 
-
     <string name="email">Email</string>
     <string name="password">Şifre</string>
     <string name="username">Adınız</string>
@@ -57,5 +56,10 @@
     <string name="register">KayıtOl</string>
     <string name="nowlogin">Hesabın varmı hemen Giriş yap !</string>
     <string name="nowsignup">Hemen üye ol</string>
+
+
+    <string name="passwordchange">Şifre Degiştir</string>
+    <string name="accountsetting">Hesap Ayarları</string>
+
 
 </resources>
